@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div>
     <navigation-bar />
   </div>
 </template>
@@ -7,7 +7,9 @@
 <script>
 import NavigationBar from "@/components/NavigationBar";
 export default {
-  name: "Home",
+  name: "AddResult",
   components: { NavigationBar },
 };
 </script>
+
+<style scoped></style>
