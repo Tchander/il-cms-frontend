@@ -5,6 +5,9 @@
 </template>
 
 <style lang="scss">
+@import "assets/styles/main.scss";
+</style>
+<style lang="scss">
 * {
   padding: 0;
   margin: 0;
@@ -34,7 +37,7 @@ aside {
 html,
 body {
   font-family: sans-serif;
-  background-color: #fff;
+  background-color: #d7d7d7;
   width: 100%;
   height: 100%;
   line-height: 1;
