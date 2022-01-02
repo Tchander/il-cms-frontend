@@ -1,5 +1,5 @@
 <template>
-  <div class="ilc-navigation">
+  <aside class="ilc-navigation">
     <ul>
       <li>
         <router-link :to="$options.ROUTES.home" class="ilc-navigation__link"
@@ -8,19 +8,23 @@
       </li>
       <li>
         <router-link
-          :to="$options.ROUTES.addResult"
+          :to="{
+            name: 'AddResult',
+            params: { title: $options.SECTION_TITLES.addResult },
+          }"
           class="ilc-navigation__link"
           >Добавить результат</router-link
         >
       </li>
     </ul>
-  </div>
+  </aside>
 </template>
 
 <script>
-import { ROUTES } from "@/const";
+import { ROUTES, SECTION_TITLES } from "@/const";
 export default {
   ROUTES,
+  SECTION_TITLES,
   name: "NavigationBar",
 };
 </script>

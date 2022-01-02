@@ -5,3 +5,8 @@ export const ROUTES = {
 
 export const BASE_URL = "https://ilserver2.herokuapp.com/api/v1/";
 export const BASE_PILOTS_URL = BASE_URL + "pilots/";
+
+export const SECTION_TITLES = {
+  home: "Главная",
+  addResult: "Добавить результат гран-при",
+};

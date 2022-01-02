@@ -38,6 +38,7 @@ html,
 body {
   font-family: sans-serif;
   background-color: #d7d7d7;
+  color: #000;
   width: 100%;
   height: 100%;
   line-height: 1;

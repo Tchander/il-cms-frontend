@@ -16,6 +16,7 @@ const routes = [
     path: ROUTES.addResult,
     name: "AddResult",
     component: AddResult,
+    props: true,
   },
 ];
 
