@@ -27,11 +27,8 @@ export default {
 
 <style lang="scss" scoped>
 .ilc-navigation {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 250px;
-  height: 100vh;
+  min-height: 100vh;
   background: #1d6cab;
   padding: 30px;
   ul {

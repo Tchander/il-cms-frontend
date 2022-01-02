@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-    <navigation-bar />
+    <div class="ilc-wrapper">
+      <navigation-bar />
+    </div>
   </div>
 </template>
 
