@@ -8,10 +8,7 @@
       </li>
       <li>
         <router-link
-          :to="{
-            name: 'AddResult',
-            params: { title: $options.SECTION_TITLES.addResult },
-          }"
+          :to="$options.ROUTES.addResult"
           class="ilc-navigation__link"
           >Добавить результат</router-link
         >
