@@ -3,9 +3,9 @@
     <input
       class="ilc-pilots-dropdown__input"
       type="text"
-      placeholder="Выберите пилота"
+      :placeholder="'Выберите ' + placeholder"
       readonly
-      v-model="pilotName"
+      v-model="itemName"
       @click="openDropdown"
     />
     <div
@@ -14,8 +14,8 @@
     >
       <div class="ilc-pilots-dropdown__options-wrapper">
         <ul>
-          <li v-for="(pilot, idx) in pilots" :key="idx">
-            <span @click="choosePilot(pilot)">{{ pilot.name }}</span>
+          <li v-for="(item, idx) in items" :key="idx">
+            <span @click="chooseItem(item)">{{ item.name }}</span>
           </li>
         </ul>
         <div class="ilc-closer" @click="openDropdown">
@@ -31,7 +31,12 @@
 export default {
   name: "ChooseOption",
   props: {
-    pilots: {
+    category: {
+      type: String,
+      required: true,
+      default: () => "",
+    },
+    items: {
       type: Array,
       required: true,
       default: () => {},
@@ -41,21 +46,25 @@ export default {
       required: true,
       default: () => 0,
     },
+    placeholder: {
+      type: String,
+      default: () => "значение",
+    },
   },
   data() {
     return {
       isDropdownOpen: false,
-      pilotName: "",
+      itemName: "",
     };
   },
   methods: {
     openDropdown() {
       this.isDropdownOpen = !this.isDropdownOpen;
     },
-    choosePilot(pilot) {
-      this.pilotName = pilot.name;
+    chooseItem(item) {
+      this.itemName = item.name;
       this.isDropdownOpen = false;
-      this.$emit("setPilot", pilot.id, this.index);
+      this.$emit("setItemValue", item.id, this.index, this.category);
     },
   },
 };
@@ -89,7 +98,6 @@ export default {
     border-radius: 10px;
     ul {
       display: flex;
-      justify-content: space-between;
       flex-wrap: wrap;
       li {
         width: 16.66%;

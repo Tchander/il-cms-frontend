@@ -4,14 +4,14 @@
 }
 .ilc-dropdown {
   width: 100%;
-  max-width: 300px;
+  max-width: 227px;
   position: relative;
   &:before {
     content: "";
     position: absolute;
     width: 10px;
     height: 10px;
-    right: 83px;
+    right: 10px;
     top: 11px;
     z-index: 1000;
     border: 2px solid #000;
