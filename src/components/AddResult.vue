@@ -6,6 +6,7 @@
         <div class="ilc-race_position">
           <span>{{ idx }}</span>
         </div>
+        <dnf-checkbox @toggleDnf="toggleDnf" :index="idx" />
         <choose-option
           class="ilc-pilots-dropdown"
           :pilots="pilots"
@@ -23,92 +24,113 @@ import { SECTION_TITLES } from "@/const";
 import NavigationBar from "@/components/NavigationBar";
 import SectionContent from "@/components/SectionContent";
 import ChooseOption from "@/components/ChooseOption";
+import DnfCheckbox from "@/components/DnfCheckbox";
 export default {
   SECTION_TITLES,
   name: "AddResult",
-  components: { ChooseOption, NavigationBar, SectionContent },
+  components: { DnfCheckbox, ChooseOption, NavigationBar, SectionContent },
   data() {
     return {
       results: [
         {
-          racePosition: 1,
-          pilot: {},
+          race_table_position: 1,
+          race_position: "1",
+          pilot_id: null,
         },
         {
-          racePosition: 2,
-          pilot: {},
+          race_table_position: 2,
+          race_position: "2",
+          pilot_id: null,
         },
         {
-          racePosition: 3,
-          pilot: {},
+          race_table_position: 3,
+          race_position: "3",
+          pilot_id: null,
         },
         {
-          racePosition: 4,
-          pilot: {},
+          race_table_position: 4,
+          race_position: "4",
+          pilot_id: null,
         },
         {
-          racePosition: 5,
-          pilot: {},
+          race_table_position: 5,
+          race_position: "5",
+          pilot_id: null,
         },
         {
-          racePosition: 6,
-          pilot: {},
+          race_table_position: 6,
+          race_position: "6",
+          pilot_id: null,
         },
         {
-          racePosition: 7,
-          pilot: {},
+          race_table_position: 7,
+          race_position: "7",
+          pilot_id: null,
         },
         {
-          racePosition: 8,
-          pilot: {},
+          race_table_position: 8,
+          race_position: "8",
+          pilot_id: null,
         },
         {
-          racePosition: 9,
-          pilot: {},
+          race_table_position: 9,
+          race_position: "9",
+          pilot_id: null,
         },
         {
-          racePosition: 10,
-          pilot: {},
+          race_table_position: 10,
+          race_position: "10",
+          pilot_id: null,
         },
         {
-          racePosition: 11,
-          pilot: {},
+          race_table_position: 11,
+          race_position: "11",
+          pilot_id: null,
         },
         {
-          racePosition: 12,
-          pilot: {},
+          race_table_position: 12,
+          race_position: "12",
+          pilot_id: null,
         },
         {
-          racePosition: 13,
-          pilot: {},
+          race_table_position: 13,
+          race_position: "13",
+          pilot_id: null,
         },
         {
-          racePosition: 14,
-          pilot: {},
+          race_table_position: 14,
+          race_position: "14",
+          pilot_id: null,
         },
         {
-          racePosition: 15,
-          pilot: {},
+          race_table_position: 15,
+          race_position: "15",
+          pilot_id: null,
         },
         {
-          racePosition: 16,
-          pilot: {},
+          race_table_position: 16,
+          race_position: "16",
+          pilot_id: null,
         },
         {
-          racePosition: 17,
-          pilot: {},
+          race_table_position: 17,
+          race_position: "17",
+          pilot_id: null,
         },
         {
-          racePosition: 18,
-          pilot: {},
+          race_table_position: 18,
+          race_position: "18",
+          pilot_id: null,
         },
         {
-          racePosition: 19,
-          pilot: {},
+          race_table_position: 19,
+          race_position: "19",
+          pilot_id: null,
         },
         {
-          racePosition: 20,
-          pilot: {},
+          race_table_position: 20,
+          race_position: "20",
+          pilot_id: null,
         },
       ],
     };
@@ -120,8 +142,15 @@ export default {
   },
   methods: {
     ...mapActions("pilots", ["getAllPilots"]),
-    setPilot(pilot, index) {
-      this.results[index - 1].pilot = pilot;
+    setPilot(pilotId, index) {
+      this.results[index - 1].pilot_id = pilotId;
+    },
+    toggleDnf(isDnf, index) {
+      if (isDnf) {
+        this.results[index - 1].race_position = "DNF";
+      } else {
+        this.results[index - 1].race_position = String(index);
+      }
     },
   },
   async created() {

@@ -5,7 +5,7 @@
       type="text"
       placeholder="Выберите пилота"
       readonly
-      v-model="pilot.name"
+      v-model="pilotName"
       @click="openDropdown"
     />
     <div
@@ -45,7 +45,7 @@ export default {
   data() {
     return {
       isDropdownOpen: false,
-      pilot: {},
+      pilotName: "",
     };
   },
   methods: {
@@ -53,9 +53,9 @@ export default {
       this.isDropdownOpen = !this.isDropdownOpen;
     },
     choosePilot(pilot) {
-      this.pilot = pilot;
+      this.pilotName = pilot.name;
       this.isDropdownOpen = false;
-      this.$emit("setPilot", pilot, this.index);
+      this.$emit("setPilot", pilot.id, this.index);
     },
   },
 };
