@@ -1,10 +1,11 @@
 <template>
-  <div class="ilc-dropdown ilc-pilots-dropdown">
+  <div class="ilc-dropdown">
     <input
       class="ilc-pilots-dropdown__input"
       type="text"
       placeholder="Выберите пилота"
       readonly
+      v-model="pilot.name"
       @click="openDropdown"
     />
     <div
@@ -14,7 +15,7 @@
       <div class="ilc-pilots-dropdown__options-wrapper">
         <ul>
           <li v-for="(pilot, idx) in pilots" :key="idx">
-            <span>{{ pilot.name }}</span>
+            <span @click="choosePilot(pilot)">{{ pilot.name }}</span>
           </li>
         </ul>
         <div class="ilc-closer" @click="openDropdown">
@@ -28,22 +29,33 @@
 
 <script>
 export default {
-  name: "ChoosePilot",
+  name: "ChooseOption",
   props: {
     pilots: {
       type: Array,
       required: true,
       default: () => {},
     },
+    index: {
+      type: Number,
+      required: true,
+      default: () => 0,
+    },
   },
   data() {
     return {
       isDropdownOpen: false,
+      pilot: {},
     };
   },
   methods: {
     openDropdown() {
       this.isDropdownOpen = !this.isDropdownOpen;
+    },
+    choosePilot(pilot) {
+      this.pilot = pilot;
+      this.isDropdownOpen = false;
+      this.$emit("setPilot", pilot, this.index);
     },
   },
 };
@@ -72,6 +84,7 @@ export default {
     width: 100%;
     max-width: 1100px;
     background: #1d6cab;
+    min-height: 300px;
     padding: 20px;
     border-radius: 10px;
     ul {
