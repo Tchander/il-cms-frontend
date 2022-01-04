@@ -1,13 +1,18 @@
 <template>
   <div class="ilc-dnf">
-    <input type="checkbox" @click="toggleDnf" />
+    <input type="checkbox" @click="changeValue" />
   </div>
 </template>
 
 <script>
 export default {
-  name: "DnfCheckbox",
+  name: "CheckboxValue",
   props: {
+    category: {
+      type: String,
+      required: true,
+      default: () => "",
+    },
     index: {
       type: Number,
       required: true,
@@ -16,13 +21,13 @@ export default {
   },
   data() {
     return {
-      isDnf: false,
+      value: false,
     };
   },
   methods: {
-    toggleDnf() {
-      this.isDnf = !this.isDnf;
-      this.$emit("toggleDnf", this.isDnf, this.index);
+    changeValue() {
+      this.value = !this.value;
+      this.$emit("changeValue", this.value, this.index, this.category);
     },
   },
 };
@@ -30,7 +35,7 @@ export default {
 
 <style lang="scss" scoped>
 .ilc-dnf {
-  margin-left: 20px;
+  margin-left: 50px;
   input {
     width: 20px;
     height: 20px;

@@ -28,7 +28,7 @@ export default {
     font-weight: 700;
     text-transform: uppercase;
     text-align: center;
-    margin: 20px auto;
+    margin: 20px auto 40px auto;
   }
 }
 </style>

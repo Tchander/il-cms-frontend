@@ -39,7 +39,7 @@ export default {
 
 <style lang="scss" scoped>
 .ilc-qualifying {
-  margin-left: 20px;
+  margin-left: 50px;
   input {
     width: 40px;
     height: 36px;

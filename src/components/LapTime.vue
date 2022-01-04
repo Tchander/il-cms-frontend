@@ -29,7 +29,7 @@ export default {
 
 <style lang="scss" scoped>
 .ilc-best_lap {
-  margin-left: 20px;
+  margin-left: 50px;
   input {
     font-size: 16px;
     padding: 10px;

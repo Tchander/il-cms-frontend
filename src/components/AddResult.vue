@@ -7,9 +7,12 @@
         <div class="ilc-race_position">
           <span>{{ idx }}</span>
         </div>
-        <dnf-checkbox @toggleDnf="toggleDnf" :index="idx" />
+        <checkbox-value
+          :category="'isDnf'"
+          @changeValue="changeValue"
+          :index="idx"
+        />
         <choose-option
-          class="ilc-pilots-dropdown"
           :category="'Pilots'"
           :items="pilots"
           :index="idx"
@@ -21,14 +24,23 @@
           @changeQualifyingPosition="changeQualifyingPosition"
         />
         <choose-option
-          class="ilc-pilots-dropdown"
           :category="'Teams'"
           :items="teams"
           :index="idx"
           :placeholder="'команду'"
           @setItemValue="setItemValue"
         />
+        <checkbox-value
+          :category="'isReservePilot'"
+          @changeValue="changeValue"
+          :index="idx"
+        />
         <lap-time v-model.trim="results[idx - 1].best_lap" />
+        <checkbox-value
+          :category="'isBestLap'"
+          @changeValue="changeValue"
+          :index="idx"
+        />
       </div>
     </section-content>
   </div>
@@ -40,7 +52,7 @@ import { SECTION_TITLES } from "@/const";
 import NavigationBar from "@/components/NavigationBar";
 import SectionContent from "@/components/SectionContent";
 import ChooseOption from "@/components/ChooseOption";
-import DnfCheckbox from "@/components/DnfCheckbox";
+import CheckboxValue from "@/components/CheckboxValue";
 import QualifyingPosition from "@/components/QualifyingPosition";
 import HeadRaw from "@/components/HeadRaw";
 import LapTime from "@/components/LapTime";
@@ -51,7 +63,7 @@ export default {
     LapTime,
     HeadRaw,
     QualifyingPosition,
-    DnfCheckbox,
+    CheckboxValue,
     ChooseOption,
     NavigationBar,
     SectionContent,
@@ -280,11 +292,17 @@ export default {
         this.results[index - 1].team_id = itemId;
       }
     },
-    toggleDnf(isDnf, index) {
-      if (isDnf) {
-        this.results[index - 1].race_position = "DNF";
-      } else {
-        this.results[index - 1].race_position = String(index);
+    changeValue(value, index, category) {
+      if (category === "isDnf") {
+        if (value) {
+          this.results[index - 1].race_position = "DNF";
+        } else {
+          this.results[index - 1].race_position = String(index);
+        }
+      } else if (category === "isBestLap") {
+        this.results[index - 1].is_race_best_lap = value;
+      } else if (category === "isReservePilot") {
+        this.results[index - 1].is_result_of_reserve_pilot = value;
       }
     },
     changeQualifyingPosition(qualifyingPosition, index) {
@@ -313,9 +331,6 @@ export default {
     font-size: 16px;
     font-weight: 700;
     border-radius: 4px;
-  }
-  .ilc-pilots-dropdown {
-    margin-left: 20px;
   }
 }
 </style>
