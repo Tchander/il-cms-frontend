@@ -2,6 +2,7 @@
   <div class="ilc-wrapper">
     <navigation-bar />
     <section-content :title="$options.SECTION_TITLES.addResult">
+      <head-raw />
       <div v-for="idx in results.length" :key="idx" class="ilc-result-raw">
         <div class="ilc-race_position">
           <span>{{ idx }}</span>
@@ -27,6 +28,7 @@
           :placeholder="'команду'"
           @setItemValue="setItemValue"
         />
+        <lap-time v-model.trim="results[idx - 1].best_lap" />
       </div>
     </section-content>
   </div>
@@ -40,10 +42,14 @@ import SectionContent from "@/components/SectionContent";
 import ChooseOption from "@/components/ChooseOption";
 import DnfCheckbox from "@/components/DnfCheckbox";
 import QualifyingPosition from "@/components/QualifyingPosition";
+import HeadRaw from "@/components/HeadRaw";
+import LapTime from "@/components/LapTime";
 export default {
   SECTION_TITLES,
   name: "AddResult",
   components: {
+    LapTime,
+    HeadRaw,
     QualifyingPosition,
     DnfCheckbox,
     ChooseOption,
@@ -59,6 +65,9 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          best_lap: "",
+          is_race_best_lap: false,
+          is_result_of_reserve_pilot: false,
         },
         {
           race_table_position: 2,
@@ -66,6 +75,9 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          best_lap: "",
+          is_race_best_lap: false,
+          is_result_of_reserve_pilot: false,
         },
         {
           race_table_position: 3,
@@ -73,6 +85,9 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          best_lap: "",
+          is_race_best_lap: false,
+          is_result_of_reserve_pilot: false,
         },
         {
           race_table_position: 4,
@@ -80,6 +95,9 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          best_lap: "",
+          is_race_best_lap: false,
+          is_result_of_reserve_pilot: false,
         },
         {
           race_table_position: 5,
@@ -87,6 +105,9 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          best_lap: "",
+          is_race_best_lap: false,
+          is_result_of_reserve_pilot: false,
         },
         {
           race_table_position: 6,
@@ -94,6 +115,9 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          best_lap: "",
+          is_race_best_lap: false,
+          is_result_of_reserve_pilot: false,
         },
         {
           race_table_position: 7,
@@ -101,6 +125,9 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          best_lap: "",
+          is_race_best_lap: false,
+          is_result_of_reserve_pilot: false,
         },
         {
           race_table_position: 8,
@@ -108,6 +135,9 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          best_lap: "",
+          is_race_best_lap: false,
+          is_result_of_reserve_pilot: false,
         },
         {
           race_table_position: 9,
@@ -115,6 +145,9 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          best_lap: "",
+          is_race_best_lap: false,
+          is_result_of_reserve_pilot: false,
         },
         {
           race_table_position: 10,
@@ -122,6 +155,9 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          best_lap: "",
+          is_race_best_lap: false,
+          is_result_of_reserve_pilot: false,
         },
         {
           race_table_position: 11,
@@ -129,6 +165,9 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          best_lap: "",
+          is_race_best_lap: false,
+          is_result_of_reserve_pilot: false,
         },
         {
           race_table_position: 12,
@@ -136,6 +175,9 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          best_lap: "",
+          is_race_best_lap: false,
+          is_result_of_reserve_pilot: false,
         },
         {
           race_table_position: 13,
@@ -143,6 +185,9 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          best_lap: "",
+          is_race_best_lap: false,
+          is_result_of_reserve_pilot: false,
         },
         {
           race_table_position: 14,
@@ -150,6 +195,9 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          best_lap: "",
+          is_race_best_lap: false,
+          is_result_of_reserve_pilot: false,
         },
         {
           race_table_position: 15,
@@ -157,6 +205,9 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          best_lap: "",
+          is_race_best_lap: false,
+          is_result_of_reserve_pilot: false,
         },
         {
           race_table_position: 16,
@@ -164,6 +215,9 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          best_lap: "",
+          is_race_best_lap: false,
+          is_result_of_reserve_pilot: false,
         },
         {
           race_table_position: 17,
@@ -171,6 +225,9 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          best_lap: "",
+          is_race_best_lap: false,
+          is_result_of_reserve_pilot: false,
         },
         {
           race_table_position: 18,
@@ -178,6 +235,9 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          best_lap: "",
+          is_race_best_lap: false,
+          is_result_of_reserve_pilot: false,
         },
         {
           race_table_position: 19,
@@ -185,6 +245,9 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          best_lap: "",
+          is_race_best_lap: false,
+          is_result_of_reserve_pilot: false,
         },
         {
           race_table_position: 20,
@@ -192,6 +255,9 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          best_lap: "",
+          is_race_best_lap: false,
+          is_result_of_reserve_pilot: false,
         },
       ],
     };
