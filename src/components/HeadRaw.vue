@@ -21,9 +21,10 @@ export default {
 .ilc-head-raw {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  width: 100%;
   text-align: center;
   font-weight: 700;
+  margin-bottom: 20px;
   .ilc-head-raw__dnf {
     margin-left: 44px;
   }

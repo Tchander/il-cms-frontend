@@ -2,6 +2,7 @@
   <div class="ilc-wrapper">
     <navigation-bar />
     <section-content :title="$options.SECTION_TITLES.addResult">
+      <league-selector v-model="currentLeague" />
       <head-raw />
       <div v-for="idx in results.length" :key="idx" class="ilc-result-raw">
         <div class="ilc-race_position">
@@ -56,10 +57,12 @@ import CheckboxValue from "@/components/CheckboxValue";
 import QualifyingPosition from "@/components/QualifyingPosition";
 import HeadRaw from "@/components/HeadRaw";
 import LapTime from "@/components/LapTime";
+import LeagueSelector from "@/components/LeagueSelector";
 export default {
   SECTION_TITLES,
   name: "AddResult",
   components: {
+    LeagueSelector,
     LapTime,
     HeadRaw,
     QualifyingPosition,
@@ -70,6 +73,7 @@ export default {
   },
   data() {
     return {
+      currentLeague: 1,
       results: [
         {
           race_table_position: 1,
@@ -77,6 +81,8 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          race_id: null,
+          league: 1,
           best_lap: "",
           is_race_best_lap: false,
           is_result_of_reserve_pilot: false,
@@ -87,6 +93,8 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          race_id: null,
+          league: 1,
           best_lap: "",
           is_race_best_lap: false,
           is_result_of_reserve_pilot: false,
@@ -97,6 +105,8 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          race_id: null,
+          league: 1,
           best_lap: "",
           is_race_best_lap: false,
           is_result_of_reserve_pilot: false,
@@ -107,6 +117,8 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          race_id: null,
+          league: 1,
           best_lap: "",
           is_race_best_lap: false,
           is_result_of_reserve_pilot: false,
@@ -117,6 +129,8 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          race_id: null,
+          league: 1,
           best_lap: "",
           is_race_best_lap: false,
           is_result_of_reserve_pilot: false,
@@ -127,6 +141,8 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          race_id: null,
+          league: 1,
           best_lap: "",
           is_race_best_lap: false,
           is_result_of_reserve_pilot: false,
@@ -137,6 +153,8 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          race_id: null,
+          league: 1,
           best_lap: "",
           is_race_best_lap: false,
           is_result_of_reserve_pilot: false,
@@ -147,6 +165,8 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          race_id: null,
+          league: 1,
           best_lap: "",
           is_race_best_lap: false,
           is_result_of_reserve_pilot: false,
@@ -157,6 +177,8 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          race_id: null,
+          league: 1,
           best_lap: "",
           is_race_best_lap: false,
           is_result_of_reserve_pilot: false,
@@ -167,6 +189,8 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          race_id: null,
+          league: 1,
           best_lap: "",
           is_race_best_lap: false,
           is_result_of_reserve_pilot: false,
@@ -177,6 +201,8 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          race_id: null,
+          league: 1,
           best_lap: "",
           is_race_best_lap: false,
           is_result_of_reserve_pilot: false,
@@ -187,6 +213,8 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          race_id: null,
+          league: 1,
           best_lap: "",
           is_race_best_lap: false,
           is_result_of_reserve_pilot: false,
@@ -197,6 +225,8 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          race_id: null,
+          league: 1,
           best_lap: "",
           is_race_best_lap: false,
           is_result_of_reserve_pilot: false,
@@ -207,6 +237,8 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          race_id: null,
+          league: 1,
           best_lap: "",
           is_race_best_lap: false,
           is_result_of_reserve_pilot: false,
@@ -217,6 +249,8 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          race_id: null,
+          league: 1,
           best_lap: "",
           is_race_best_lap: false,
           is_result_of_reserve_pilot: false,
@@ -227,6 +261,8 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          race_id: null,
+          league: 1,
           best_lap: "",
           is_race_best_lap: false,
           is_result_of_reserve_pilot: false,
@@ -237,6 +273,8 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          race_id: null,
+          league: 1,
           best_lap: "",
           is_race_best_lap: false,
           is_result_of_reserve_pilot: false,
@@ -247,6 +285,8 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          race_id: null,
+          league: 1,
           best_lap: "",
           is_race_best_lap: false,
           is_result_of_reserve_pilot: false,
@@ -257,6 +297,8 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          race_id: null,
+          league: 1,
           best_lap: "",
           is_race_best_lap: false,
           is_result_of_reserve_pilot: false,
@@ -267,12 +309,21 @@ export default {
           qualifying_position: "",
           pilot_id: null,
           team_id: null,
+          race_id: null,
+          league: 1,
           best_lap: "",
           is_race_best_lap: false,
           is_result_of_reserve_pilot: false,
         },
       ],
     };
+  },
+  watch: {
+    currentLeague(val) {
+      for (let result of this.results) {
+        result.league = val;
+      }
+    },
   },
   computed: {
     ...mapGetters("pilots", {
@@ -320,6 +371,7 @@ export default {
 .ilc-result-raw {
   display: flex;
   align-items: center;
+  width: 100%;
   margin-bottom: 20px;
   .ilc-race_position {
     display: flex;

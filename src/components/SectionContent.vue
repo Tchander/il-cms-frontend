@@ -20,8 +20,9 @@ export default {
 <style lang="scss" scoped>
 .section-content {
   width: 100%;
+  max-width: 1200px;
   height: 100%;
-  padding: 10px;
+  margin: 0 auto;
   .section-title {
     width: 100%;
     font-size: 20px;
