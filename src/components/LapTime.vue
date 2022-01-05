@@ -35,11 +35,11 @@ export default {
     padding: 10px;
     outline: none;
     border-radius: 4px;
-    color: #000;
-    background: #fff;
+    color: #fff;
+    background: #1d6cab;
     letter-spacing: 5px;
     &::placeholder {
-      color: #6e6e6e;
+      color: #cccccc;
     }
   }
 }

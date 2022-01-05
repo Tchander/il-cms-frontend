@@ -12,7 +12,11 @@
         />
       </div>
       <head-raw />
-      <div v-for="idx in results.length" :key="idx" class="ilc-result-raw">
+      <div
+        v-for="idx in results.length"
+        :key="idx + 'a'"
+        class="ilc-result-raw"
+      >
         <div class="ilc-race_position">
           <span>{{ idx }}</span>
         </div>
@@ -51,6 +55,35 @@
           :index="idx"
         />
       </div>
+      <div class="ilc-result-additional">
+        Добавить результаты не стартовавших гонщиков
+      </div>
+      <div
+        v-for="idx in additionalResults.length"
+        :key="idx + 'b'"
+        class="ilc-result-raw"
+      >
+        <div class="ilc-race_position">
+          <span>{{ additionalResults[idx - 1].race_position }}</span>
+        </div>
+        <choose-option
+          :category="'Pilots'"
+          :items="pilots"
+          :index="idx"
+          :placeholder="'пилота'"
+          :is-additional-result="true"
+          @setItemValue="setItemValue"
+        />
+        <choose-option
+          :category="'Teams'"
+          :items="teams"
+          :index="idx"
+          :placeholder="'команду'"
+          :is-additional-result="true"
+          @setItemValue="setItemValue"
+        />
+      </div>
+      <button class="ilc-result-additional__btn" @click="addResult">+</button>
     </section-content>
   </div>
 </template>
@@ -82,6 +115,15 @@ export default {
   data() {
     return {
       currentLeague: 1,
+      additionalResult: {
+        race_position: "DNS",
+        qualifying_position: "DNQ",
+        pilot_id: null,
+        team_id: null,
+        race_id: null,
+        league: 1,
+      },
+      additionalResults: [],
       results: [
         {
           race_table_position: 1,
@@ -331,6 +373,10 @@ export default {
       for (let result of this.results) {
         result.league = val;
       }
+      for (let result of this.additionalResults) {
+        result.league = val;
+      }
+      this.additionalResult.league = val;
     },
   },
   computed: {
@@ -348,14 +394,26 @@ export default {
     ...mapActions("pilots", ["getAllPilots"]),
     ...mapActions("teams", ["getAllTeams"]),
     ...mapActions("race", ["getAllRace"]),
-    setItemValue(itemId, index, category) {
-      if (category === "Pilots") {
-        this.results[index - 1].pilot_id = itemId;
-      } else if (category === "Teams") {
-        this.results[index - 1].team_id = itemId;
-      } else if (category === "Race") {
-        for (let result of this.results) {
-          result.race_id = itemId;
+    setItemValue(itemId, index, category, isAdditionalResult) {
+      if (isAdditionalResult) {
+        if (category === "Pilots") {
+          this.additionalResults[index - 1].pilot_id = itemId;
+        } else if (category === "Teams") {
+          this.additionalResults[index - 1].team_id = itemId;
+        }
+      } else {
+        if (category === "Pilots") {
+          this.results[index - 1].pilot_id = itemId;
+        } else if (category === "Teams") {
+          this.results[index - 1].team_id = itemId;
+        } else if (category === "Race") {
+          for (let result of this.results) {
+            result.race_id = itemId;
+          }
+          for (let result of this.additionalResults) {
+            result.race_id = itemId;
+          }
+          this.additionalResult.race_id = itemId;
         }
       }
     },
@@ -374,6 +432,9 @@ export default {
     },
     changeQualifyingPosition(qualifyingPosition, index) {
       this.results[index - 1].qualifying_position = String(qualifyingPosition);
+    },
+    addResult() {
+      this.additionalResults.push({ ...this.additionalResult });
     },
   },
   async created() {
@@ -401,10 +462,37 @@ export default {
     align-items: center;
     width: 40px;
     height: 36px;
-    background: #fff;
+    color: #fff;
+    background: #1d6cab;
     font-size: 16px;
     font-weight: 700;
     border-radius: 4px;
+  }
+}
+.ilc-result-additional {
+  width: 100%;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 20px auto;
+}
+.ilc-result-additional__btn {
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  font-weight: 700;
+  outline: none;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  color: #fff;
+  background: #1d6cab;
+  border: 1px solid transparent;
+  transition: all 0.3s linear;
+  &:hover {
+    color: #1d6cab;
+    background: #fff;
+    border: 1px solid #1d6cab;
   }
 }
 </style>

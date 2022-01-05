@@ -49,6 +49,10 @@ export default {
       type: String,
       default: () => "значение",
     },
+    isAdditionalResult: {
+      type: Boolean,
+      default: () => false,
+    },
   },
   data() {
     return {
@@ -63,7 +67,13 @@ export default {
     chooseItem(item) {
       this.itemName = item.name;
       this.isDropdownOpen = false;
-      this.$emit("setItemValue", item.id, this.index, this.category);
+      this.$emit(
+        "setItemValue",
+        item.id,
+        this.index,
+        this.category,
+        this.isAdditionalResult
+      );
     },
   },
 };
@@ -78,10 +88,10 @@ export default {
     outline: none;
     cursor: pointer;
     border-radius: 4px;
-    color: #000;
-    background: #fff;
+    color: #fff;
+    background: #1d6cab;
     &::placeholder {
-      color: #000;
+      color: #fff;
     }
   }
   .ilc-pilots-dropdown__options {
