@@ -58,7 +58,6 @@ export default {
 <style lang="scss" scoped>
 .ilc-league-selector {
   display: flex;
-  margin-bottom: 30px;
   .ilc-league-selector__title {
     font-size: 16px;
     font-weight: 700;

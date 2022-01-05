@@ -2,7 +2,15 @@
   <div class="ilc-wrapper">
     <navigation-bar />
     <section-content :title="$options.SECTION_TITLES.addResult">
-      <league-selector v-model="currentLeague" />
+      <div class="ilc-result-header__selectors">
+        <league-selector v-model="currentLeague" />
+        <choose-option
+          :items="race"
+          :category="'Race'"
+          :placeholder="'гран-при'"
+          @setItemValue="setItemValue"
+        />
+      </div>
       <head-raw />
       <div v-for="idx in results.length" :key="idx" class="ilc-result-raw">
         <div class="ilc-race_position">
@@ -332,15 +340,23 @@ export default {
     ...mapGetters("teams", {
       teams: "teams",
     }),
+    ...mapGetters("race", {
+      race: "race",
+    }),
   },
   methods: {
     ...mapActions("pilots", ["getAllPilots"]),
     ...mapActions("teams", ["getAllTeams"]),
+    ...mapActions("race", ["getAllRace"]),
     setItemValue(itemId, index, category) {
       if (category === "Pilots") {
         this.results[index - 1].pilot_id = itemId;
       } else if (category === "Teams") {
         this.results[index - 1].team_id = itemId;
+      } else if (category === "Race") {
+        for (let result of this.results) {
+          result.race_id = itemId;
+        }
       }
     },
     changeValue(value, index, category) {
@@ -363,11 +379,17 @@ export default {
   async created() {
     await this.getAllPilots();
     await this.getAllTeams();
+    await this.getAllRace();
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.ilc-result-header__selectors {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
 .ilc-result-raw {
   display: flex;
   align-items: center;
